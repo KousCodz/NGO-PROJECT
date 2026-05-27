@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Visitor Management System</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <div class="container">
+
+    <div class="header">
+      <h1>Visitor Management System</h1>
+      <p>Maanavta Hitaay Seva Chatra Old Age Home Visitor Portal</p>
+    </div>
+
+    <div class="form-container">
+
+      <input type="text" id="visitorName" placeholder="Visitor Name"/>
+      <input type="tel" id="phone" placeholder="Phone Number"/>
+      <input type="text" id="resident" placeholder="Resident Name"/>
+      <input type="text" id="purpose" placeholder="Purpose of Visit"/>
+
+    </div>
+
+    <button onclick="addVisitor()">Add Visitor</button>
+
+    <div class="cards">
+
+      <div class="card">
+        <h2>Total Visitors</h2>
+        <p id="totalVisitors">0</p>
+      </div>
+
+      <div class="card">
+        <h2>Today's Entries</h2>
+        <p id="todayVisitors">0</p>
+      </div>
+
+      <div class="card">
+        <h2>Active Records</h2>
+        <p id="activeVisitors">0</p>
+      </div>
+
+    </div>
+
+    <!-- PRINT SECTION ADDED -->
+    <div class="print-section">
+
+      <input type="date" id="filterDate">
+
+      <button onclick="printByDate()">
+        Print Selected Day
+      </button>
+
+    </div>
+
+    <div class="table-container">
+
+      <table>
+        <thead>
+          <tr>
+            <th>Visitor</th>
+            <th>Phone</th>
+            <th>Resident</th>
+            <th>Purpose</th>
+            <th>Entry Time</th>
+            <th>Exit Time</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody id="visitorTable">
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
