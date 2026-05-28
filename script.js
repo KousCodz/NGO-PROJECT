@@ -1,4 +1,10 @@
-let visitors = [];
+// Load Visitors From Local Storage
+let visitors = JSON.parse(localStorage.getItem("visitors")) || [];
+
+// Save Visitors
+function saveVisitors() {
+  localStorage.setItem("visitors", JSON.stringify(visitors));
+}
 
 // Add Visitor
 function addVisitor() {
@@ -14,20 +20,25 @@ function addVisitor() {
     return;
   }
 
-  const entryTime = new Date().toLocaleString();
+  const now = new Date();
 
   visitors.unshift({
     visitorName,
     phone,
     resident,
     purpose,
-    entryTime,
-    exitTime: "-"
+    entryTime: now.toLocaleString(),
+    exitTime: "-",
+    date: now.toISOString()
   });
+
+  // Save Data
+  saveVisitors();
 
   updateTable();
   updateCards();
 
+  // Clear Inputs
   document.getElementById("visitorName").value = "";
   document.getElementById("phone").value = "";
   document.getElementById("resident").value = "";
@@ -46,6 +57,9 @@ function markExit(index) {
 
   visitors[index].exitTime = new Date().toLocaleString();
 
+  // Save Data
+  saveVisitors();
+
   updateTable();
   updateCards();
 }
@@ -58,6 +72,9 @@ function deleteVisitor(index) {
   if (confirmDelete) {
 
     visitors.splice(index, 1);
+
+    // Save Data
+    saveVisitors();
 
     updateTable();
     updateCards();
@@ -82,13 +99,14 @@ function updateTable() {
         <td>${visitor.entryTime}</td>
         <td>${visitor.exitTime}</td>
 
-        <td style="display:flex; gap:10px;">
+        <td style="display:flex; gap:10px; flex-wrap:wrap;">
 
           <button onclick="markExit(${index})">
             Exit
           </button>
 
-          <button onclick="deleteVisitor(${index})"
+          <button
+            onclick="deleteVisitor(${index})"
             style="background:linear-gradient(to right,#ef4444,#dc2626);">
             Delete
           </button>
@@ -103,8 +121,17 @@ function updateTable() {
 function updateCards() {
 
   document.getElementById("totalVisitors").innerText = visitors.length;
-  document.getElementById("todayVisitors").innerText = visitors.length;
 
+  // Today's Visitors
+  const today = new Date().toISOString().split("T")[0];
+
+  const todayVisitors = visitors.filter(visitor =>
+    visitor.date.split("T")[0] === today
+  ).length;
+
+  document.getElementById("todayVisitors").innerText = todayVisitors;
+
+  // Active Visitors
   const activeVisitors = visitors.filter(
     visitor => visitor.exitTime === "-"
   ).length;
@@ -146,11 +173,7 @@ function printByDate() {
 
   const filteredVisitors = visitors.filter(visitor => {
 
-    const visitorDate = new Date(visitor.entryTime)
-      .toISOString()
-      .split("T")[0];
-
-    return visitorDate === selectedDate;
+    return visitor.date.split("T")[0] === selectedDate;
 
   });
 
@@ -197,6 +220,7 @@ function printByDate() {
         <title>Print Visitor Data</title>
 
         <style>
+
           body{
             font-family:Arial;
             padding:20px;
@@ -216,6 +240,7 @@ function printByDate() {
             padding:10px;
             text-align:left;
           }
+
         </style>
 
       </head>
@@ -229,3 +254,7 @@ function printByDate() {
   printWindow.document.close();
   printWindow.print();
 }
+
+// Load Existing Data On Refresh
+updateTable();
+updateCards();
