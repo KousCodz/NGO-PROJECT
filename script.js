@@ -99,7 +99,7 @@ function updateTable() {
         <td>${visitor.entryTime}</td>
         <td>${visitor.exitTime}</td>
 
-        <td style="display:flex; gap:10px; flex-wrap:wrap;">
+        <td style="display:flex; gap:5px; flex-wrap:wrap;">
 
           <button onclick="markExit(${index})">
             Exit
