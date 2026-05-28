@@ -173,10 +173,20 @@ function printByDate() {
 
   const filteredVisitors = visitors.filter(visitor => {
 
-    return visitor.date.split("T")[0] === selectedDate;
+  // Old records support
+  if (!visitor.date) {
 
-  });
+    const oldDate = new Date(visitor.entryTime)
+      .toISOString()
+      .split("T")[0];
 
+    return oldDate === selectedDate;
+  }
+
+  // New records support
+  return visitor.date.split("T")[0] === selectedDate;
+
+});
   if (filteredVisitors.length === 0) {
     alert("No records found for selected date");
     return;
