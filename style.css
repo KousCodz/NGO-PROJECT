@@ -134,8 +134,9 @@ button:hover{
 }
 
 /* TABLE */
+
 .table-container{
-  margin-top:35px;
+  margin-top:25px;
   overflow-x:auto;
 }
 
@@ -149,12 +150,13 @@ table{
 th{
   background:rgba(255,255,255,0.12);
   color:#f3f4f6;
-  padding:18px;
-  font-size:15px;
+  padding:10px;
+  font-size:13px;
 }
 
 td{
-  padding:18px;
+  padding:10px;
+  font-size:13px;
   color:#e5e7eb;
   border-bottom:1px solid rgba(255,255,255,0.08);
 }
@@ -164,9 +166,9 @@ tr:hover{
 }
 
 table button{
-  padding:10px 18px;
-  font-size:14px;
-  border-radius:12px;
+  padding:6px 12px;
+  font-size:12px;
+  border-radius:10px;
   background:linear-gradient(to right,#ec4899,#8b5cf6);
 }
 
