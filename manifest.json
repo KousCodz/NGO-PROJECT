@@ -1,6 +1,6 @@
 {
   "name": "Manavta Hitay Seva Chatra Old Age Home Visitor Management System",
-  "short_name": "Visitor App",
+  "short_name": "Visitor Portal",
   "description": "Visitor Entry and Exit Management System for Manavta Hitay Seva Chatra Old Age Home",
   "start_url": "./index.html",
   "display": "standalone",
