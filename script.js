@@ -81,6 +81,43 @@ function deleteVisitor(index) {
   }
 }
 
+function deleteByDate() {
+
+  const selectedDate = document.getElementById("filterDate").value;
+
+  if (!selectedDate) {
+    alert("Please select a date");
+    return;
+  }
+
+  const confirmDelete = confirm(
+    `Delete all visitor records for ${selectedDate}?`
+  );
+
+  if (!confirmDelete) return;
+
+  visitors = visitors.filter(visitor => {
+
+    if (!visitor.date) {
+
+      const oldDate = new Date(visitor.entryTime)
+        .toISOString()
+        .split("T")[0];
+
+      return oldDate !== selectedDate;
+    }
+
+    return visitor.date.split("T")[0] !== selectedDate;
+
+  });
+
+  saveVisitors();
+  updateTable();
+  updateCards();
+
+  alert("Records deleted successfully.");
+}
+
 // Update Table
 function updateTable() {
 
