@@ -193,18 +193,22 @@ function printByDate() {
   }
 
   let printContent = `
-    <h2>Visitor Record - ${selectedDate}</h2>
+<div style="text-align:center; margin-bottom:30px;">
+  <h1>Manavta Hitay Seva Chatra Old Age Home</h1>
+  <h2>Visitor Report</h2>
+  <h3>Date: ${selectedDate}</h3>
+</div>
 
-    <table border="1" cellspacing="0" cellpadding="10" width="100%">
-      <tr>
-        <th>Visitor</th>
-        <th>Phone</th>
-        <th>Resident</th>
-        <th>Purpose</th>
-        <th>Entry Time</th>
-        <th>Exit Time</th>
-      </tr>
-  `;
+<table border="1" cellspacing="0" cellpadding="10" width="100%">
+  <tr>
+    <th>Visitor Name</th>
+    <th>Phone Number</th>
+    <th>Resident Name</th>
+    <th>Purpose</th>
+    <th>Entry Time</th>
+    <th>Exit Time</th>
+  </tr>
+`;
 
   filteredVisitors.forEach(visitor => {
 
@@ -231,28 +235,39 @@ function printByDate() {
 
         <style>
 
-          body{
-            font-family:Arial;
-            padding:20px;
-          }
+body{
+  font-family:Arial, sans-serif;
+  padding:30px;
+}
 
-          table{
-            border-collapse:collapse;
-            width:100%;
-          }
+h1{
+  text-align:center;
+  margin-bottom:10px;
+}
 
-          th{
-            background:#7e22ce;
-            color:white;
-          }
+h2,h3{
+  text-align:center;
+}
 
-          th, td{
-            padding:10px;
-            text-align:left;
-          }
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:25px;
+}
 
-        </style>
+th{
+  background:#f2f2f2;
+  color:black;
+  font-weight:bold;
+}
 
+th,td{
+  border:2px solid black;
+  padding:12px;
+  text-align:center;
+}
+
+</style>
       </head>
 
       <body>
